@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+
+<script type="text/babel">
+    class Weather extends React.Component{
+    constructor(props){
+        // 必须要写 不然会报错
+        super(props)
+        this.state = {
+            isHot : true
+        }
+    }
+    isHot(){
+        console.log(1)
+        this.state.isHot = !this.state.isHot
+        // 如果要更新页面属性需要使用setState方法，该方法只替换单个属性不替换整个state对象
+        this.setState({
+            isHot : !isHot
+        })
+    }
+    render() {
+        // 不要带（），带（）是调函数，不带（），才是指定函数
+        // 在这里调用isHot方法，this是找不到的，因为没有通过实例调用
+        // 将this注入到isHot中
+        let isHot = this.isHot.bind(this)
+            return <h1 onClick={isHot}> 今天天气十分 {this.state.isHot? "炎热" : "凉爽"} </h1>
+    }
+
+}
+ ReactDOM.render(<Weather/>,document.getElementById("app"))
+</script>
