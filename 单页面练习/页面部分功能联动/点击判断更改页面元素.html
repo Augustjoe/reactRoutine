@@ -29,6 +29,7 @@
         console.log(1)
         this.state.isHot = !this.state.isHot
         // 如果要更新页面属性需要使用setState方法，该方法只替换单个属性不替换整个state对象
+        // 更新页面就是调取render方法 
         this.setState({
             isHot : !isHot
         })

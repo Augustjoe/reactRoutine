@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+
+<script type="text/babel">
+    //   数组新方法 reduce
+    let arr = [1, 2, 3, 4, 5, 6]
+    //  返回一个值
+    let sum = arr.reduce((pre, cur, index, arr) => {
+        //  pre 上一次调用的返回值,cur当前被处理的元素,index 当前元素的下标,arr 调用reduce的数组
+        return pre + cur
+    })
+    // 当函数接受值为...时，所有接收的数据都放在一个数组中
+    function sun(...number) {
+        return number.reduce((pre, cur, index, arr) => {
+            //  pre 上一次调用的返回值,cur当前被处理的元素,index 当前元素的下标,arr 调用reduce的数组
+            return pre + cur
+        })
+    }
+
+
+    class Person extends React.Component {
+        render() {
+            //    props会接受到html标签上的键值和健名，可自定义获取
+            const { name, age, sex } = this.props
+            return (
+                <ul>
+                    <li>{name}</li>
+                    <li>{age}</li>
+                    <li>{sex}</li>
+                </ul>
+            )
+        }
+    }
+    //  正常情况可以这么使用 但也有简写的方法  
+    //  ReactDOM.render(<Person name="lilei" age="17" sex="男"/>,document.getElementById("app"))
+
+    let p = { name: "lilei", age: 18, sex: "男" }
+    // 需要注意键名要对应
+    ReactDOM.render(<Person {...p} />, document.getElementById("app"))
+
+
+</script>
