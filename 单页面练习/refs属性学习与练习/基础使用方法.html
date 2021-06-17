@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+<script type="text/babel">
+  class ShowInput extends React.Component  {
+      showData = () => {
+          console.log(this.refs.input1.value)
+          console.log(this.input2.value)
+      }
+      render() {
+        //   字符串的refs,因为效率问题，已经基本被废弃，将来主要使用函数方式
+          return (
+              <div>
+                <input ref="input1" type="text"/>
+                <input ref={(a) => { this.input2 = a }} type="text"/>
+                <button onClick={this.showData}>显示数据</button>
+              </div>
+          )
+      }
+  }
+  ReactDOM.render(<ShowInput/>,document.getElementById("app"))
+</script>

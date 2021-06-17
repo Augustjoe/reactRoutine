@@ -18,36 +18,19 @@
 <script src="../../modules/babel.min.js" type="text/javascript"></script>
 
 <script type="text/babel">
-    class Person extends React.Component {
-        // 构造器可写可不写，在实际的开发中基本上不写
-        constructor(props){
-            // 如果不传props，可能会导致在构造器中无法获取props
-            super(props)
-
-            console.log(props)
-        }
-        // 也可以用 static 静态资源 添加到类中
-        static protoTypes = {
-            name: PropTypes.string,
-            name: PropTypes.string.isRequired //限制为字符串且必穿
-        }
-        // 未传情况下的默认值
-        static defaultProps = {
-            sex:"男"
-        }
-
-        render() {
-            //    props会接受到html标签上的键值和健名，可自定义获取
-            const { name, age, sex } = this.props
-            return (
-                <ul>
-                    <li>{name}</li>
-                    <li>{age}</li>
-                    <li>{sex}</li>
-                </ul>
-            )
-        }
+    // 函数式组件只能接受到props
+    function Person (props) {
+        // 可利用props的传参去生成DOM实例
+        let {name,age,sex} = props
+        return (
+            <ul>
+                <li>姓名：{name}</li>
+                <li>年龄：{age}</li>
+                <li>性别：{sex}</li>
+            </ul>
+        )
     }
+    
     Person.protoTypes = {
         //    规定name传入的类型值必须时字符串类型，不是字符串不会影响显示，但会报错
         //  可以规定多种的数据类型 number 数字类型 func 函数类型 
