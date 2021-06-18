@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+<script type="text/babel">
+
+  class EleComponts extends React.Component {
+
+      state = {
+
+      }
+
+      clickForm = ()=>{
+          event.preventDefault()
+          const {userName,passWord} = this.state
+          console.log(userName,passWord)
+      }
+    /*
+        1.受控组件
+          尽量不写ref，数据会随着改变而实时的加入到组件的state中，但需要手动更新到页面
+    */
+      render(){
+          return (
+              <form onSubmit={this.clickForm}>
+              <input onChange={(eve)=>{this.setState({userName:eve.target.value})}} name="userName"/>
+              <input onChange={(eve)=>{this.setState({passWord:eve.target.value})}} name="passWord"/>
+              <button > 提交</button>
+              </form>
+          )
+      }
+  }
+
+  ReactDOM.render(<EleComponts/>,document.getElementById("app"))
+</script>
