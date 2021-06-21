@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>class 的基本知识</h1>
+</body>
+</html>
+<script type="text/javascript">
+    /*
+    1.类中的构造器不是必须写的，要对实例进行一些初始化操作，如添加指定属性时才写
+    2.如果A类继承了B类，且A类中写了构造器，那么A类构造器中的super是必须要调用的
+    3.类中所定义的方法，都是放在了；类的原型对象上，供实例去使用
+    */
+   class Person{
+    //    构造器方法 不是必须写的
+       constructor (name,age){
+        //    传过来的值都会放在这里
+        //    this 就是指向创建实例本身
+        this.age = age;
+        this.name = name;
+       }
+    //    方法放在类的原型对象上，供实例调用
+    // 通过Person实例调用speak时，speak中的this就是Person实例
+       speack(){
+        console.log(`我叫${this.name},我今年${this.age}岁`)
+       }
+   }
+//    可通过extends 继承类
+   class Student extends Person{
+    //    也可以根据具体业务去定制
+    constructor(name,age,grade){
+        // 定制时一定要先调用supoer 将值传给父级，且要在所有内容之前调用
+        super(name,age)
+        this.grade = grade
+    }
+    speack(){
+        console.log(`我叫${this.name},我今年${this.age}岁,${this.grade}`)
+    }
+    // study 方法属于 Student 在实例原型中
+    study(){
+        console.log("努力学习")
+    }
+   }
+   var p1 = new Person("小王",18)
+   var student = new Student('小张',16,"高三")
+   student.speack()
+   p1.speack()
+</script>

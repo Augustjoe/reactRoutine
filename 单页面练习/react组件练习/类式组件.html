@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+
+<script type="text/babel">
+//  在react中定义的组件class，必须继承React.Component
+   class Component extends React.Component {
+    //    render 是必须写的，也是必须要return的
+    // render放在组件实例对象中
+    // render 中的this指向组件实例对象
+    render(){
+        // 
+        return <h2>类定义对象，用于复杂对象</h2>
+    }
+   }
+
+   ReactDOM.render(<Component/>,document.getElementById("app"))
+    // 执行了 ReactDOM.render
+    //   1.React解析组件标签，找到了MyComponent组件
+    //   2.发现组件是使用类定义的，随后new出了该类的实例，并通过该实例调用render
+    //   3.将render返回的DOM,转化为真实DOM，随后呈现在页面中
+</script>
