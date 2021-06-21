@@ -32,13 +32,27 @@
     /*
         1.受控组件
           尽量不写ref，数据会随着改变而实时的加入到组件的state中，但需要手动更新到页面
+        2.高阶函数 如果满足下面两条中的任意一条就是高阶函数
+          1）接受的参数中包括函数
+          2）返回值是一个函数
+        函数的柯里化：通过函数返回值是函数的方式持续调用函数，最后统一处理的函数编码方式
     */
+    //柯里化获取值
+    saveData(type){
+        return (event)=>{
+            this.setState({[type]:event.target.value})
+        }
+    }
+    //也可以不使用柯里化 获取绑定的实例
+    savePass(type,event){
+         this.setState({[type]:event.target.value})
+    }
       render(){
           return (
               <form onSubmit={this.clickForm}>
-              <input onChange={(eve)=>{this.setState({userName:eve.target.value})}} name="userName"/>
-              <input onChange={(eve)=>{this.setState({passWord:eve.target.value})}} name="passWord"/>
-              <button > 提交</button>
+                <input onChange={this.saveData("userName")} name="userName"/>
+                <input onChange={event => this.savePass("passWord",event)} name="passWord"/>
+                <button > 提交</button>
               </form>
           )
       }
