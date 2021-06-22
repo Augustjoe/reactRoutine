@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+<script type="text/babel">
+
+    class Count extends React.Component {
+        constructor(props){
+            console.log('初始化 调用 constructor')
+            super(props)
+            this.state = {count:0}
+        }
+
+       
+
+        componentWillMount(){
+            console.log("组件将要挂载 componentWillMount")
+        }
+        // 旧版还在用 新版17 以后不再用了
+        componentDidMount(){
+            console.log("组件挂载完毕后调用 componentWillMount")
+        }
+
+        add=()=>{
+            const {count} = this.state
+            this.setState({count:count+1})
+        }
+        render(){
+            console.log("render")
+            return (
+                <div>
+                    <h2>当前值为{this.state.count}</h2>
+                    <button onClick={this.add}>+1</button>   
+                </div>
+            )
+        }
+
+    }
+
+    ReactDOM.render(<Count />, document.getElementById("app"))
+</script>
