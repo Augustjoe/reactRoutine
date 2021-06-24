@@ -27,4 +27,8 @@
   1. 组件创建的过程
      componentWillMount 组件将要挂载 -> render 挂载组件 -> componentDidMount 组件挂载完成
   2. 组件更新的过程
-      
+      shouldComponentUpdate 确认组件是否可以更新 -> componentWillUpdate 组件将要被更新 -> render 更新组件 -> componentDidUpdate组件更新完毕
+  3. 更新props后数据更新的回调
+      componentWillReceiveProps 更新props  -> shouldComponentUpdate 确认组件是否可以更新 -> componentWillUpdate 组件将要被更新 -> render 更新组件 -> componentDidUpdate组件更新完毕
+  3. 在新版（17+）的react中
+     componentWillUpdate componentWillMount componentWillReceiveProps 在前面加上UNSAFE_  这些函数可能在18版本删除
