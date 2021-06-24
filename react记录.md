@@ -31,4 +31,6 @@
   3. 更新props后数据更新的回调
       componentWillReceiveProps 更新props  -> shouldComponentUpdate 确认组件是否可以更新 -> componentWillUpdate 组件将要被更新 -> render 更新组件 -> componentDidUpdate组件更新完毕
   3. 在新版（17+）的react中
-     componentWillUpdate componentWillMount componentWillReceiveProps 在前面加上UNSAFE_  这些函数可能在18版本删除
+     1. componentWillUpdate componentWillMount componentWillReceiveProps 在前面加上UNSAFE_  这些函数可能在18版本删除
+     2. getDerivedStateFromProps 新版生命周期函数 除销毁组件时，其他任何环境都会触发,可接受到props 和 state 的值，并对其进行处理,必须要有返回值，返回值直接作用到state上,无需处理state时可返回null
+     3. getSnapshotBeforeUpdate 在最近一次渲染输出前调用 可在组件马上更新之前获取一些信息，返回值将作为参数传递给componrntDidUpdate()

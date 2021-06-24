@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+<script type="text/babel">
+ class FatherCount extends React.Component {
+    state={
+        number:1
+    } 
+    randomNumber = ()=>{
+        this.setState({number:Math.floor(Math.random()*10)})
+    }
+    render(){
+         return (
+             <div>
+                <h1>计算属性传递</h1>
+                <button onClick={this.randomNumber}>重新传递随机数</button>
+                <Count number={this.state.number}/>    
+            </div>
+         )
+     }
+ }
+    class Count extends React.Component {
+        constructor(props){
+            console.log('初始化 调用 constructor')
+            super(props)
+            console.log(props)
+            this.state = {count:props.number}
+        }
+        
+        death = ()=>{
+            // 删除组件
+            ReactDOM.unmountComponentAtNode(document.getElementById("app"))
+        }
+    //    新版生命周期函数 除销毁组件时，其他任何环境都会触发
+    // 如果state的值在任何情况都跟props一样则可以使用
+        static getDerivedStateFromProps( props , state){
+            // 可接受到props 和 state 的值，并对其进行处理
+            console.log("getDerivedStateFromProps",props,state)
+            // 必须要有返回值，返回值直接作用到state上
+            return null
+        }
+        // 在最近一次渲染输出前调用 可在组件马上更新之前获取一些信息，返回值将作为参数传递给componrntDidUpdate()
+        getSnapshotBeforeUpdate(){
+            console.log("getSnapshotBeforeUpdate")
+            return "Snapshot"
+            
+        }
+
+        // 旧版还在用 新版17 以后不再用了
+        componentDidMount(){
+            console.log("组件挂载完毕后调用 componentWillMount")
+        }
+        // 组件是否应该被更新
+        shouldComponentUpdate(){
+            // 默认返回值为true 可通过return false 打断组件更新
+            console.log("确认组件是否更新")
+            return true
+        }
+        // 组件将要被更新
+
+        // 组件更新完毕
+        componentDidUpdate( prevProps,prevState,snapshotValue){
+            // 可获取变化之前的prevProps 和 prevState 还有getSnapshotBeforeUpdate传递过来的snapshotValue
+            console.log("组件更新完毕",prevProps,prevState,snapshotValue)
+        }
+        // 组件将要被卸载时调用的钩子
+
+
+
+        add=()=>{
+            const {count} = this.state
+            this.setState({count:count+1})
+        }
+        // forceUpdate 可强制更新组件绕开shouldComponentUpdate
+        render(){
+            console.log("render",this.props)
+            return (
+                <div>
+                    <h2>当前值为{this.state.count}</h2>
+                    <button onClick={this.add}>+1</button>   
+                    <button onClick={this.death}>卸载组件</button>   
+                    
+                    <button onClick={()=>this.forceUpdate()}>强制更新组件</button>   
+                </div>
+            )
+        }
+
+    }
+
+    ReactDOM.render(<FatherCount />, document.getElementById("app"))
+</script>
