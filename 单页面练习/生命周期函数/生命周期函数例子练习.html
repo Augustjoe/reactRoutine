@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list{
+            width:200px;
+            height:150px;
+            background-color: skyblue;
+            overflow: auto;
+        }
+        .news{
+            height:30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+<script src="../../modules/babel.min.js" type="text/javascript"></script>
+<script type="text/babel">
+ class FatherCount extends React.Component {
+    state={
+        newsList : []
+    }
+
+    getSnapshotBeforeUpdate(){
+        // 这时获取的的scrollHeight 是尚未更新视图的
+        return this.refs.list.scrollHeight
+    }
+
+    componentDidUpdate(preProps,preState,height){
+        console.log(this.refs.list.scrollHeight,height)
+        // 这里获取的scrollHeight 是视图更新之后的
+        // 所有两个高度相减的值就等于这次变化的高度
+        this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+    }
+
+    componentDidMount(){
+        setInterval(()=>{
+            const { newsList } = this.state
+            const news = "新闻" + (newsList.length + 1)
+            this.setState({newsList:[news,...newsList]})
+        },1000)
+    }
+    render(){
+         return (
+             <div>
+                 <ul className="list" ref="list">
+                 {
+                     this.state.newsList.map((item,index)=>{
+                         return <li key={index} className="news">{item}</li>
+                     })
+                 }
+                </ul>
+            </div>
+         )
+     }
+ }
+
+
+    ReactDOM.render(<FatherCount/>, document.getElementById("app"))
+</script>
