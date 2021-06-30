@@ -34,3 +34,7 @@
      1. componentWillUpdate componentWillMount componentWillReceiveProps 在前面加上UNSAFE_  这些函数可能在18版本删除
      2. getDerivedStateFromProps 新版生命周期函数 除销毁组件时，其他任何环境都会触发,可接受到props 和 state 的值，并对其进行处理,必须要有返回值，返回值直接作用到state上,无需处理state时可返回null
      3. getSnapshotBeforeUpdate 在最近一次渲染输出前调用 可在组件马上更新之前获取一些信息，返回值将作为参数传递给componrntDidUpdate()
+# react脚手架准备
+  1. npm i -g create-react-app 全局安装react脚手架
+  2. 创建react项目 create-react-app " 项目名称 "（不许有中文，不能有大写字母）
+    * 创建成功后会有四个命令 值得注意的是 yarn eject 会将所有隐藏的wabpack文件显示出来，并且没有办法再重新隐藏
