@@ -1,9 +1,14 @@
+// 引入react核心库
 import React from 'react';
+// 引入react渲染核心库
 import ReactDOM from 'react-dom';
+// 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//  React.StrictMode 在app外侧包裹 用于检查App 内代码写的是否合理
+// 渲染 app
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -11,7 +16,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

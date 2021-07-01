@@ -39,3 +39,17 @@
   2. 创建react项目 create-react-app " 项目名称 "（不许有中文，不能有大写字母）
     * 创建成功后会有四个命令 值得注意的是 yarn eject 会将所有隐藏的wabpack文件显示出来，并且没有办法再重新隐藏
   3. 之后只会有一个html文件 称为单页面应用 spa
+# react脚手架文件介绍
+   public - favicon.ico 网页页签图标
+          - index.html 最终渲染的网页 所有的页面最终都会渲染到index.html上
+          - logo 网页的logo
+          - manifest.json react的网页套壳配置，是为在APP上允许而准备的
+          - robots.txt 
+   src - App.css app的样式
+       - App.js  app的js方法
+       - index.css 公用的样式
+       - index.js react的入口文件，将react渲染到html
+       - reportWebVitals.js 用于测试网页性能
+       - setupTest 用于整体或组件测试
+       执行顺序 index.js -> index.html (不要随便改文件名)
+         
