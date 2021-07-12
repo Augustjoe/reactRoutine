@@ -17,12 +17,21 @@ export default class App extends Component{
     {id:3,name:"工作", done:true}
    ]
  }
+// 子组件向父组件传值，可以通过回调函数的方式
+// 声明一个函数再通过prop 向子组件传递
+ addList = (newList)=>{
+   const List = [
+     newList,...this.state.stuList
+   ]
+   this.setState({stuList : List})
+ }
+
   render(){
     const { stuList } = this.state
     return (
       <div className="todo-container">
       <div className="todo-wrap">
-        <Hearder></Hearder>
+        <Hearder addList={this.addList}></Hearder>
         <List stuList={stuList}></List>
         <Footer></Footer>
       </div>
