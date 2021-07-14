@@ -12,9 +12,21 @@ export default class Item extends Component {
         }
     }
 
-    handleCheck = (id)=>{
+    handleCheck = (item)=>{
         return (event)=>{
-            console.log(event.target.checked)
+            console.log(event.target.checked,item)
+            this.props.changeDone({
+                ...item,
+                done:event.target.checked,
+            })
+        }
+    }
+
+    delList = (id)=>{
+        return ()=>{
+            if(window.confirm("是否删除此任务")){
+                this.props.deleteList(id)
+            }
         }
     }
 
@@ -24,10 +36,10 @@ export default class Item extends Component {
             <div>
                 <li style={{background:this.state.mouse?'#ddd':'white'}} onMouseLeave={this.handleMouse(false)} onMouseEnter={this.handleMouse(true)} >
                     <label>
-                        <input type="checkbox" defaultChecked={done} onChange={this.handleCheck(id)}/>
+                        <input type="checkbox" defaultChecked={done} onChange={this.handleCheck(this.props.item )}/>
                         <span>{name}</span>
                     </label>
-                    <button  className="btn btn-danger" style={{ display :this.state.mouse? "" : 'none' }}>删除</button>
+                    <button onClick={this.delList(id)} className="btn btn-danger" style={{ display :this.state.mouse? "" : 'none' }}>删除</button>
                 </li>
             </div>
         )
