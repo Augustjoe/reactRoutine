@@ -33,7 +33,7 @@ export default class App extends Component{
       <div className="todo-wrap">
         <Hearder addList={this.addList}></Hearder>
         <List stuList={stuList}></List>
-        <Footer></Footer>
+        <Footer stuList={stuList}></Footer>
       </div>
     </div>
     )     
