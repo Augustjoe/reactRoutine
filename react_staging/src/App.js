@@ -47,6 +47,22 @@ export default class App extends Component {
     this.setState({stuList:list})
   }
 
+  checkAll = (done)=>{
+    const {stuList} = this.state
+    let newList = stuList.map(ele=>{
+      return {...ele,done}
+    })
+    this.setState({stuList:newList})
+  }
+
+    clearAllDone=()=>{
+      const {stuList} = this.state
+      let newList = stuList.filter(ele=>{
+        return !ele.done
+      })
+      this.setState({stuList:newList})
+    }
+
   render() {
     const { stuList } = this.state
     return (
@@ -54,7 +70,7 @@ export default class App extends Component {
         <div className="todo-wrap">
           <Hearder addList={this.addList}></Hearder>
           <List stuList={stuList} changeDone={this.changeDone} deleteList={this.deleteList}></List>
-          <Footer></Footer>
+          <Footer stuList={stuList} checkAll={this.checkAll} clearAllDone={this.clearAllDone}></Footer>
         </div>
       </div>
     )
