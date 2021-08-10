@@ -3,7 +3,7 @@ import React from 'react';
 // 引入react渲染核心库
 import ReactDOM from 'react-dom';
 // 
-
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

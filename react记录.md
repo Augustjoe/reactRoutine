@@ -52,4 +52,14 @@
        - reportWebVitals.js 用于测试网页性能
        - setupTest 用于整体或组件测试
        执行顺序 index.js -> index.html (不要随便改文件名)
+# todoList 案例相关知识点
+  1. 拆分组件、实现静态组件。注意在react中 className、style的写法
+  2. 动态实现初始化列表。如何决定数据放在哪个组件里？
+     * 某个组件使用放在组件中
+     * 多个组件使用，放在在他们共同的父组件中（状态提升）
+  3. 关于父子组件之间的通信：
+     1. 父组件 给 子组件传递数据：通过props传递
+     2. 子组件 给 父组件传递数据：通过props传递，要求父组件提前给子组件传递一个函数
+  4. 注意defaultChecked 和 checked 的区别，类似的还有：defaultValue 和 value
+  5. 状态在哪里，操作状态的方法就在哪里
          

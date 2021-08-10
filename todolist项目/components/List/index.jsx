@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-
+import PropTypes from "prop-types"
 import Item from "../Item"
 
 export default class List extends Component {
+
+    static propTypes = {
+        stuList:PropTypes.array.isRequired
+    }
+
     render() {
         const {stuList} = this.props
         return (
@@ -10,7 +15,7 @@ export default class List extends Component {
                 <ul className="todo-main">
                     {
                         stuList.map(item=>{
-                            return  <Item key={item.id} item={item} ></Item>
+                            return  <Item key={item.id} item={item} changeDone={this.props.changeDone} deleteList={this.props.deleteList}></Item>
                         })
                     }
                    

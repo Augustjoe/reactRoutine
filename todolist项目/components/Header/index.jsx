@@ -6,7 +6,7 @@ export default class Header extends Component {
     handleKeyUp= (event)=>{
         const {keyCode,target} = event;
         if(keyCode !== 13) return 
-        if(target.value.trim()){
+        if(!target.value.trim()){
             alert("输入值不能为空")
             return
         }
