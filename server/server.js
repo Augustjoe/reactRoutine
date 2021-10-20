@@ -12,10 +12,12 @@ const app = express()
 */
 app.get("/search/users", function (req, res) {
   const {q} = req.query
+  console.log("收到请求")
   axios({
     url: 'https://api.github.com/search/users',
     params: {q}
   }).then(response => {
+    console.log("返回结果",response.data)
     res.json(response.data)
   })
 })

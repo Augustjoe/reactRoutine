@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // 
 
 import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 //  React.StrictMode 在app外侧包裹 用于检查App 内代码写的是否合理
 // 渲染 app
@@ -15,3 +16,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+reportWebVitals();
