@@ -2,16 +2,19 @@
 import React from 'react';
 // 引入react渲染核心库
 import ReactDOM from 'react-dom';
+
+import { BrowserRouter } from "react-router-dom"
 // 
 
 import App from './App';
 
-//  React.StrictMode 在app外侧包裹 用于检查App 内代码写的是否合理
+//  将BrowserRouter包裹在App外侧则所有的路由都在一个路由器当中
+// react的路由使用时需要将所有的路由器包裹在一个路由器中
 // 渲染 app
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

@@ -70,8 +70,71 @@
   3. 消息订阅与发布机制（实现任意组件间通信）
      1. 先订阅，再发布
      2. 使用任意组件通信
-     3. 要在组件的componenWillUnmount中取消订阅
+     3. 要在组件的componentWillUnmount中取消订阅
   4. fetch发送请求（关注分离的设计思想）具体请参考示例
      1. 注意fetch是传递的promise实例
      2. 现阶段很多浏览器的支持并不好
-         
+# React路由 
+    一个路由就是一个映射关系（key-value）key为路径，value可能是function或者component
+    1. 明确好界面中的导航区、展示区
+    2. 导航区的a标签改为Link标签
+      <Link className="list-group-item" to="/home">Home</Link>
+    3. 展示区写Router标签进行路径的匹配
+       <Route path="/home" component={Home}></Route>
+    4. <App>的最外侧包夹了一个 <BrowserRouter> 或者 <HashRouter>
+# 路由组件和一般组件的区别
+    1. 写法不同
+       一般组件 ： <Demo/>
+       路由组件 ： <Route path="/home" component={Home}></Route>
+    2. 存放位置不同：
+       一般组件 components
+       路由组件 pages
+    3. 接收到的props不同
+       一般组件：标签上传递了什么就收到什么
+       路由组件：
+                history:
+                      go: ƒ go(n)
+                      goBack: ƒ goBack()
+                      goForward: ƒ goForward()
+                      push: ƒ push(path, state)
+                      replace: ƒ replace(path, state)
+                location:
+                      pathname: "/home"
+                      search: ""
+                      state: undefined
+                match:
+                      params: {}
+                      path: "/home"
+                      url: "/home"
+# NavLink与封装NavLink
+  1. NavLink可以通过实现路由链的高亮，通过activeClassName指定样式名
+  2. 标签体内容是一个特殊的标签属性
+  3. 通过this.props.children可以获取标签体内容
+
+# 解决多级路径刷新页面样式丢失问题
+  1. public/index.html 中引入样式时不写./ 写 / （常用）
+  2. public/index.html 中引入样式时不写 ./ 写 %PUBLIC_URL%
+  3. 使用HashRouter
+# 路由的严格匹配与模糊匹配
+  1. 默认使用的是模糊匹配（输入的路径必须包含匹配的路径，且顺序一致）
+  2. 开启严格匹配: <Route exact={true} path="/home" component={Home}></Route>
+  3. 严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
+# Redirect的使用
+  1. 一般卸载所有路由注册的最下方，当所有的路由都无法匹配时，跳转Redirect指定的路由
+  2. 具体编码                 
+                <Switch>
+                  <Route path="/about" component={About}></Route>
+                  <Route path="/home" component={Home}></Route>
+                  {/* 当所有的路由都没有匹配上时，会走Redirect */}
+                  <Redirect to="/about/"></Redirect>
+                </Switch>
+
+# 嵌套路由
+  1. 注册子路由时要写上父路由的path值
+  2. 路由的匹配是按照注册路由的顺序进行的
+
+# 向路由组件传递参数
+  1. params 传递参数
+        路由参数 <Link to={`/home/homemessage/detail/${ele.id}/${ele.title}`}>{ele.title}</Link>
+        注册路由 <Route path='/home/homemessage/detail/:id/:title' component={Detail}/>
+        接收参数 const { id, title } = this.props.match.params

@@ -17,7 +17,12 @@
     <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
     <!-- 应用加壳时的配置文件 -->
     <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
-    <link rel="stylesheet" href="./css/bootstrap.css">
+
+    <!-- 刷新出现样式丢失的原因是，浏览器去相应的路径下请求资源，react默认传回的是public下的index.html -->
+    <!-- 可有两种解决方法一种是不用 ./css/bootstrap.css 使用 /css/bootstrap.css 直接在服务器路径下请求  -->
+    <!-- 一种是 在路径前加上 %PUBLIC_URL% 相当与public的绝对路径  -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.css"> -->
     <title>React App</title>
   </head>
   <body>
