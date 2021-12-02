@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import qs from "querystring"
+
 
 export default class detail extends Component {
     state = {
@@ -12,8 +14,11 @@ export default class detail extends Component {
         // 组件接受params参数
         // const { id, title } = this.props.match.params
         
+        // 接受search参数
+        const {search} = this.props.location
+        const {id,title} = qs.parse(search.slice(1))
+
         // 组件接受
-        const { id, title } = this.props.match.search
         const content = this.state.detail.find(ele => ele.id === id)
         return (
             <div>
