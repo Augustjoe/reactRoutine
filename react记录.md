@@ -128,11 +128,9 @@
                   {/* 当所有的路由都没有匹配上时，会走Redirect */}
                   <Redirect to="/about/"></Redirect>
                 </Switch>
-
 # 嵌套路由
   1. 注册子路由时要写上父路由的path值
   2. 路由的匹配是按照注册路由的顺序进行的
-
 # 向路由组件传递参数
   1. params 传递参数
         路由参数 <Link to={`/home/homemessage/detail/${ele.id}/${ele.title}`}>{ele.title}</Link>
@@ -148,3 +146,20 @@
         注册路由（正常注册即可） ： <Route path='/home/homemessage/detail' component={Detail}/>
         接受参数 ： const {id,title} = this.props.location.state
         备注：刷新也可保留参数
+# 编程式路由导航
+   借助this.props.history对象上的API进行操作路由跳转，前进，后退
+        this.props.history.push 添加路由
+        this.props.history.replace 替换路由
+        this.props.history.goBack 后退
+        this.props.history.goForward 前进
+        this.props.history.go 跳转指定路由
+# BrowserRouter 与 HashRouter 的区别
+  1. 底层原理不同
+     BrouserRouter 使用的是H5的history API，不兼容IE9及以下版本。
+  2. url的表现形式不一样
+     BrowserRouter 的路径中没有#，例如：location:3000/demo/test
+     HashRouter 的路径中包含# 例如：location:3000/#/demo/test
+  3. 刷新后对路由参数state的影响
+     （1） BrowserRouter没有任何影响，因为state的参数保存在history中
+     （2） HashRouter 刷新后会导致路由state参数的丢失
+  4. 备注：HashRouter 可以用于解决一些路径错误相关的问题
