@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { NavLink,Switch,Route,Redirect } from "react-router-dom"
+import { Switch,Route,Redirect } from "react-router-dom"
+import NavLink from "../../components/NavLinks/NavLinks"
 import News from "./news/news.jsx"
 import Message from "./message/message.jsx"
 export default class home extends Component {

@@ -143,3 +143,8 @@
         注册路由（正常注册即可） ： <Route path='/home/homemessage/detail' component={Detail}/>
         接受参数 ：const {search} = this.props.location
         备注：接受的数据是编码字符串，需要借助querystring解析
+  3. state 传递参数
+        路由链接（携带参数）： <Link to={{pathname:"/home/homemessage/detail",state:{id:ele.id,title:ele.content}}}>{ele.title}</Link>
+        注册路由（正常注册即可） ： <Route path='/home/homemessage/detail' component={Detail}/>
+        接受参数 ： const {id,title} = this.props.location.state
+        备注：刷新也可保留参数
