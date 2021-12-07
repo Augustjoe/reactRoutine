@@ -163,3 +163,29 @@
      （1） BrowserRouter没有任何影响，因为state的参数保存在history中
      （2） HashRouter 刷新后会导致路由state参数的丢失
   4. 备注：HashRouter 可以用于解决一些路径错误相关的问题
+# antd的按需引入+自定主题
+  1. 安装依赖 yarn add react-app-rewired customize-cra babel-plugin-import less less-loader
+  2. 修改package.json
+        "scripts": {
+          "start": "react-app-rewired start",
+          "build": "react-app-rewired build",
+          "test": "react-app-rewired test",
+          "eject": "react-scripts eject"
+        },
+  3. 根据目录下创建config-overrides.js
+      const { override, fixBabelImports, addLessLoader } = require('customize-cra');
+
+      module.exports = override(
+          fixBabelImports('import', {
+              libraryName: 'antd',
+              libraryDirectory: 'es',
+              style: true,
+          }),
+          addLessLoader({
+              lessOptions: {
+                  javascriptEnabled: true,
+                  modifyVars: { '@primary-color': '#1DA57A' },
+              }
+          }),
+      );
+  4. 改变主题后应将对应的引入的css删除
