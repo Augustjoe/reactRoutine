@@ -5,7 +5,6 @@ export default class count extends Component {
 
     state = { count:0 }
 
-    // 组件自身更新
     // componentDidMount(){
     //     Rstore.subscribe(()=>{
     //         this.setState({})
