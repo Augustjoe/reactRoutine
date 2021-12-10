@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Rstore from "../redux/store"
-import {createIncrementAction, createdecrementAction,createdecrementAsyncAction} from "./redux_action"
+import {createIncrementAction, createdecrementAction} from "./redux_action"
 
 export default class count extends Component {
 
@@ -26,10 +26,10 @@ export default class count extends Component {
         const {value} = this.selectNumber
         Rstore.getState() % 2 !== 0 &&  Rstore.dispatch(createIncrementAction(value*1))
     }
-    incrementAsync=()=>{ 
+    incrementAsync=()=>{
         const {value} = this.selectNumber
         setTimeout(()=>{
-            createdecrementAsyncAction(value*1,500)
+            Rstore.dispatch(createIncrementAction(value*1))
         },500)
     }
 
