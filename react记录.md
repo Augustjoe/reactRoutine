@@ -218,3 +218,13 @@
        2) 创建action的函数不再返回一般对象，而是一个函数，该函数中写异步任务
        3) 异步任务有结果后，分发一个同步的action去操作数据
   4. 备注：异步action不是必须要写的，完全可以自己等待异步任务的结果出现后，再去分发同步action
+
+# 求和案例 react-redux的基本使用
+  1. 明确两个概念：
+     1) UI组件：不能使用任何redux的api，只会负责页面的呈现，交互等
+     2) 容器组件：负责和redux通信，将结果交给UI组件
+  2. 如何创建一个容器组件--靠react-redux的connect函数
+      export default connect(mapStateToProps, MapDispatchToProps)(CountUI)
+      mapStateToProps 映射状态至组件的props，返回值是一个对象
+      MapDispatchToProps 映射操作状态的方法，返回值是一个对象
+  3. 备注：UI组件的store是靠props传进去的，而不是容器组件中直接引入的。
