@@ -2,7 +2,7 @@
 // 引入用于链接UI组件和redux的connect
 import { connect } from "react-redux"
 
-import { createIncrementAction, createdecrementAction, createdecrementAsyncAction } from "../components/redux_action"
+import { createIncrementAction, createdecrementAction, createdecrementAsyncAction } from "../redux/actions/count"
 
 import React, { Component } from 'react'
 

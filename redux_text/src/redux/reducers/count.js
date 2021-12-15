@@ -1,4 +1,4 @@
-import {INCREMENT,DECREMENT} from "../components/constant"
+import {INCREMENT,DECREMENT} from "../constant"
 
 
 export default function countReducer(preState = 0, action) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Count  from './containers/count'
+import Count  from './components/count'
+import Person from "./components/person"
 
 
 export default class App extends Component {
@@ -7,6 +8,7 @@ export default class App extends Component {
         return (
             <div>
                <Count/>
+               <Person/>
             </div>
         )
     }
