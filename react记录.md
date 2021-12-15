@@ -228,3 +228,24 @@
       mapStateToProps 映射状态至组件的props，返回值是一个对象
       MapDispatchToProps 映射操作状态的方法，返回值是一个对象
   3. 备注：UI组件的store是靠props传进去的，而不是容器组件中直接引入的。
+  4. MapDispatchToProps 也可以传一个对象 
+     {
+      "increment": createIncrementAction,
+      "decrement": createdecrementAction,
+      "AsyncAction": createdecrementAsyncAction,
+     }
+# 求和案例 react-reduct 的使用优化
+  1. 容器和UI组件整合成一个文件
+  2. 无需自己给容器组件传递store，给<App/>包裹一个 <Provider store={store}></Provider> 即可
+  3. 使用了 react-redux 后不用再检测redux中的状态改变，容器组件可以自动完成这个工作
+  4. maMapDispatchToPropsp 可以简单的写成一个对象
+  5. 一个组件要和 redux “打交道”要经过哪几步
+        1) 定义好UI组件---》不暴露
+        2) 引入connect生成一个容器组件，并暴露，写法如下
+          export default connect(store =>({ store }), 
+            {
+                "key": value,
+            }
+          )(CountUI)
+        3) 再UI组件中通过 this.props 来获取状态
+        4)
