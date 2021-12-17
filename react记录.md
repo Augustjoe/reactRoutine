@@ -249,3 +249,14 @@
           )(CountUI)
         3) 再UI组件中通过 this.props 来获取状态
         4)
+# 求和案例 react-redux 数据共享版
+  1. 定义一个pesersonzu组件，和Count组件通过redux共享数据
+  2. 为person组件编写：reducer 、action ，配置constant常量
+  3. 重点：person 和 reducer 和 count 的 Reducer 要使用 combineReducers 进行合并，合并后的总状态是一个对象
+  4. 交给store的是总reducer，最后注意再组件中取出状态的时候，记得取到位。
+# 开发者工具的使用
+  1. npm install redux-devtools-extension -save
+  2. store 中进行配置 引入
+     import { composeWithDevTools } from "redux-devtools-extension"
+     export default  createStore(allReducer,composeWithDevTools(applyMiddleware(thunk))) 
+     
