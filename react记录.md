@@ -259,4 +259,6 @@
   2. store 中进行配置 引入
      import { composeWithDevTools } from "redux-devtools-extension"
      export default  createStore(allReducer,composeWithDevTools(applyMiddleware(thunk))) 
-     
+# 求和案例_react-redux最终版
+  1. 所有变量名字要规范，尽量触发对象的简写方式
+  2. reducers文件夹中，编写index.js专门用于汇总并暴露所有的reducer
