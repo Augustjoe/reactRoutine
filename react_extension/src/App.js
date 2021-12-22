@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Demo from "./components/2_lazyload/index"
+import Demo from "./components/3_hook"
 
 
 export default class App extends Component {
